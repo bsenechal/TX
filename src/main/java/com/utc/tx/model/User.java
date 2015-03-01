@@ -1,4 +1,4 @@
-package com.utc.api01.model;
+package com.utc.tx.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

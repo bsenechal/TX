@@ -1,8 +1,8 @@
-package com.utc.api01.service;
+package com.utc.tx.service;
 
 import java.util.List;
 
-import com.utc.api01.dao.GeneriqueDao;
+import com.utc.tx.dao.GeneriqueDao;
 
 public class GeneriqueServiceImpl<T> implements GeneriqueService<T> {
 

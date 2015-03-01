@@ -15,11 +15,7 @@
         <property name="hibernate.connection.SetBigStringTryClob">true</property>      
         <property name="hibernate.jdbc.batch_size">0</property>  
 
-		<mapping class="com.utc.api01.model.Role" />
-        <mapping class="com.utc.api01.model.User" />
-        <mapping class="com.utc.api01.model.Book" />
-        <mapping class="com.utc.api01.model.Question" />
-        <mapping class="com.utc.api01.model.Evaluation" />
-        <mapping class="com.utc.api01.model.Notes" />
+		<mapping class="com.utc.tx.model.User" />
+		<mapping class="com.utc.tx.model.Role" />
 		</session-factory>
 </hibernate-configuration>

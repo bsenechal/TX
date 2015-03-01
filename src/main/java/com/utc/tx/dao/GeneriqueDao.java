@@ -1,27 +1,27 @@
-package com.utc.api01.service;
+package com.utc.tx.dao;
 
 import java.util.List;
 
-public interface GeneriqueService<T> {
-   
+public interface GeneriqueDao<T> {
+    
     /**
      * Ajout d'un objet T
      * @param c
      */
-    public void add(T u);
+    public void add(T c);
 
     /**
      * Mise à jour d'un objet T
      * @param c
      */
-    public void update(T u);
-    
+    public void update(T c);
+
     /**
      * Renvoi une liste d'objet T
      * @return List<T>
      */
     public List<T> list();
-    
+
     /**
      * Renvoi un objet T en fonction de son id
      * @param id

@@ -1,4 +1,4 @@
-package com.utc.api01.controller;
+package com.utc.tx.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.utc.api01.mail.ApplicationMailer;
-import com.utc.api01.model.Role;
-import com.utc.api01.model.User;
-import com.utc.api01.service.GeneriqueService;
+import com.utc.tx.model.Role;
+import com.utc.tx.model.User;
+import com.utc.tx.service.GeneriqueService;
 
 @Controller
 public class UserController {
@@ -44,13 +42,7 @@ public class UserController {
     private static final String MSG_SUPPR_SUCCESS = "L'utilisateur a correctement été supprimé.";
     private GeneriqueService<User> userService;
     private GeneriqueService<Role> roleService;
-    private ApplicationContext applicationContext;
-    
-    @Autowired(required = true)
-    @Qualifier(value = "applicationContext")
-    public void setApplicationContext(ApplicationContext applicationContext){
-        this.applicationContext = applicationContext;
-    }
+   
 
     @Autowired(required = true)
     @Qualifier(value = "userService")
@@ -141,17 +133,7 @@ public class UserController {
             
             if (u.getIdUser() != 0) {
                 model.addObject("msg", MSG_EDIT_SUCCESS);
-                 
-                //Get the mailer instance
-                ApplicationMailer mailer = (ApplicationMailer) applicationContext.getBean("mailService");
-         
-                //Send a pre-configured mail
-                String newligne=System.getProperty("line.separator"); 
-                mailer.sendPreConfiguredMail("Mise à jour de votre compte " + u.getFirstname() 
-                        + newligne + "Votre identifiant : " + u.getEmail() 
-                        + newligne + "Votre mot de passe : " + u.getPassword()
-                        , u.getEmail());
-                
+                           
                 if (u.getAvatar() == null){
                     u.setAvatar(this.userService.getById(u.getIdUser()).getAvatar());
                 }
@@ -160,18 +142,6 @@ public class UserController {
             } else {
                 u.setCreationDate(new SimpleDateFormat("YYYY-MM-DD").format(new Date()));
                 model.addObject("msg", MSG_ADD_SUCCESS);
-                
-              //Get the mailer instance
-                ApplicationMailer mailer = (ApplicationMailer) applicationContext.getBean("mailService");
-         
-                //Send a pre-configured mail
-                String newligne=System.getProperty("line.separator"); 
-                mailer.sendPreConfiguredMail("Bienvenue sur The Book " + u.getFirstname() 
-                        + newligne + "Votre identifiant : " + u.getEmail() 
-                        + newligne + "Votre mot de passe : " + u.getPassword()
-                        , u.getEmail());
-                u.setAvatar(file.getBytes());
-                this.userService.add(u);
             }
             model.addObject(REDIRECT_LISTUSERS, this.userService.list());
         }

@@ -31,117 +31,38 @@
 	        </property>
 	</bean>
 	
-	<bean id="userDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
+	<bean id="userDao" class="com.utc.tx.dao.GeneriqueDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 		<constructor-arg>
-        	<value>com.utc.api01.model.User</value>
+        	<value>com.utc.tx.model.User</value>
     	</constructor-arg>
 	</bean>
 	
-	<bean id="userService" class="com.utc.api01.service.GeneriqueServiceImpl">
+	<bean id="userService" class="com.utc.tx.service.GeneriqueServiceImpl">
 		<property name="dao" ref="userDao"></property>
 		<constructor-arg>
-        	<value>com.utc.api01.model.User</value>
+        	<value>com.utc.tx.model.User</value>
     	</constructor-arg>
 	</bean>
 	
-	<bean id="roleService" class="com.utc.api01.service.GeneriqueServiceImpl">
+	<bean id="roleDao" class="com.utc.tx.dao.GeneriqueDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg>
+        	<value>com.utc.tx.model.Role</value>
+    	</constructor-arg>
+	</bean>
+	
+	<bean id="roleService" class="com.utc.tx.service.GeneriqueServiceImpl">
 		<property name="dao" ref="roleDao"></property>
 		<constructor-arg>
-        	<value>com.utc.api01.model.Role</value>
+        	<value>com.utc.tx.model.Role</value>
     	</constructor-arg>
 	</bean>
-
-	<bean id="roleDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<constructor-arg>
-        	<value>com.utc.api01.model.Role</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="bookDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<constructor-arg>
-        	<value>com.utc.api01.model.Book</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="bookService" class="com.utc.api01.service.GeneriqueServiceImpl">
-		<property name="dao" ref="bookDao"></property>
-		<constructor-arg>
-        	<value>com.utc.api01.model.Book</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="evalDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<constructor-arg>
-        	<value>com.utc.api01.model.Evaluation</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="evalService" class="com.utc.api01.service.GeneriqueServiceImpl">
-		<property name="dao" ref="evalDao"></property>
-		<constructor-arg>
-        	<value>com.utc.api01.model.Evaluation</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="questionDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<constructor-arg>
-        	<value>com.utc.api01.model.Question</value>
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="questionService" class="com.utc.api01.service.GeneriqueServiceImpl">
-		<property name="dao" ref="questionDao"></property>
-		<constructor-arg>
-        	<value>com.utc.api01.model.Question</value>
-    	</constructor-arg>
-	</bean>
-	
-    <bean id="noteDao" class="com.utc.api01.dao.GeneriqueDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory" />
-        <constructor-arg>
-            <value>com.utc.api01.model.Notes</value>
-        </constructor-arg>
-    </bean>
-    
-    <bean id="noteService" class="com.utc.api01.service.GeneriqueServiceImpl">
-        <property name="dao" ref="noteDao"></property>
-        <constructor-arg>
-            <value>com.utc.api01.model.Notes</value>
-        </constructor-arg>
-    </bean>	
     
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
-	<!-- SET default mail properties -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com"/>
-        <property name="port" value="587"/>
-        <property name="username" value="benoit.senechal.utc@gmail.com"/>
-        <property name="password" value="26Thophunoto46"/>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-            </props>
-        </property>
-    </bean>
-     
-    <!-- You can have some pre-configured messagess also which are ready to send -->
-    <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
-        <property name="to" value="slashtutoriel@gmail.com"></property>
-        <property name="from" value="LeBook@notOriginal.com"></property>
-        <property name="subject" value="Votre compte sur LeBook "/>
-    </bean>
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -155,7 +76,7 @@
 
 	<aop:config>
 		<aop:pointcut id="userServicePointCut"
-			expression="execution(* com.utc.api01.service.*Service.*(..))" />
+			expression="execution(* com.utc.tx.service.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
 	</aop:config>
 
