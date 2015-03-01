@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/projet_api01</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+        <property name="hibernate.connection.characterEncoding">UTF-8</property>
+        <property name="hibernate.connection.charSet">UTF-8</property>  
+        <property name="hibernate.connection.SetBigStringTryClob">true</property>      
+        <property name="hibernate.jdbc.batch_size">0</property>  
+
+		<mapping class="com.utc.api01.model.Role" />
+        <mapping class="com.utc.api01.model.User" />
+        <mapping class="com.utc.api01.model.Book" />
+        <mapping class="com.utc.api01.model.Question" />
+        <mapping class="com.utc.api01.model.Evaluation" />
+        <mapping class="com.utc.api01.model.Notes" />
+		</session-factory>
+</hibernate-configuration>
