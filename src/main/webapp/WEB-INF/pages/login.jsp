@@ -1,14 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 
-<jsp:include page="header.jsp"/>
-
 <div class="content">
 	<div class="wrap">
 		<div class="single-page">
 		
-			<jsp:include page="messages.jsp"/>
-			
 			<div class="page-header">
 				<h1>Connexion</h1>
 			</div>	
@@ -35,7 +31,6 @@
 				</div>
 			</div>
 		</div>	
-		<jsp:include page="footer.jsp"/>
 	</div>
 </div>
 </body>

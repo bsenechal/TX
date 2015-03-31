@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.utc.tx.model.Role;
 import com.utc.tx.model.User;
-import com.utc.tx.service.GeneriqueService;
+import com.utc.tx.service.GenericService;
 
 @Controller
 public class UserController {
@@ -40,19 +40,19 @@ public class UserController {
     private static final String MSG_ADD_SUCCESS = "L'utilisateur a correctement été ajouté.";
     private static final String MSG_EDIT_SUCCESS = "L'utilisateur a correctement été modifié.";
     private static final String MSG_SUPPR_SUCCESS = "L'utilisateur a correctement été supprimé.";
-    private GeneriqueService<User> userService;
-    private GeneriqueService<Role> roleService;
+    private GenericService<User> userService;
+    private GenericService<Role> roleService;
    
 
     @Autowired(required = true)
     @Qualifier(value = "userService")
-    public void setUserService(GeneriqueService<User> us) {
+    public void setUserService(GenericService<User> us) {
         this.userService = us;
     }
 
     @Autowired(required = true)
     @Qualifier(value = "roleService")
-    public void setRoleService(GeneriqueService<Role> r) {
+    public void setRoleService(GenericService<Role> r) {
         this.roleService = r;
     }
 
@@ -129,7 +129,7 @@ public class UserController {
             model.setViewName(REDIRECT_EDITUSER);
         } else {
             model.setViewName(JSP_USER);
-            u.setRole(this.roleService.getById(u.getRoleUser()));
+            u.setRole(this.roleService.getById(u.getRole().getIdRole()));
             
             if (u.getIdUser() != 0) {
                 model.addObject("msg", MSG_EDIT_SUCCESS);

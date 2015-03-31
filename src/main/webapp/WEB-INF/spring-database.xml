@@ -13,7 +13,7 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/projet_api01" />
+		<property name="url" value="jdbc:mysql://localhost:3306/TX" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
@@ -31,28 +31,28 @@
 	        </property>
 	</bean>
 	
-	<bean id="userDao" class="com.utc.tx.dao.GeneriqueDaoImpl">
+	<bean id="userDao" class="com.utc.tx.dao.GenericDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 		<constructor-arg>
         	<value>com.utc.tx.model.User</value>
     	</constructor-arg>
 	</bean>
 	
-	<bean id="userService" class="com.utc.tx.service.GeneriqueServiceImpl">
+	<bean id="userService" class="com.utc.tx.service.GenericServiceImpl">
 		<property name="dao" ref="userDao"></property>
 		<constructor-arg>
         	<value>com.utc.tx.model.User</value>
     	</constructor-arg>
 	</bean>
 	
-	<bean id="roleDao" class="com.utc.tx.dao.GeneriqueDaoImpl">
+	<bean id="roleDao" class="com.utc.tx.dao.GenericDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 		<constructor-arg>
         	<value>com.utc.tx.model.Role</value>
     	</constructor-arg>
 	</bean>
 	
-	<bean id="roleService" class="com.utc.tx.service.GeneriqueServiceImpl">
+	<bean id="roleService" class="com.utc.tx.service.GenericServiceImpl">
 		<property name="dao" ref="roleDao"></property>
 		<constructor-arg>
         	<value>com.utc.tx.model.Role</value>

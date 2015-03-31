@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/projet_api01</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/TX</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -15,7 +15,5 @@
         <property name="hibernate.connection.SetBigStringTryClob">true</property>      
         <property name="hibernate.jdbc.batch_size">0</property>  
 
-		<mapping class="com.utc.tx.model.User" />
-		<mapping class="com.utc.tx.model.Role" />
 		</session-factory>
 </hibernate-configuration>

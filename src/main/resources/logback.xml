@@ -11,7 +11,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com.utc.api01" level="debug">
+	<logger name="com.utc.tx" level="debug">
 		<appender-ref ref="STDOUT" />
 	</logger>
 

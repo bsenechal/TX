@@ -62,29 +62,12 @@ public class User {
     @Lob()
     private byte[] avatar;
 
-    @Transient
-    @NotNull
-    private int roleUser;
 
     @Transient
     @NotEmpty
     @Size(min = 6, max = 15)
     private String confirmation;
   
-    /**
-     * @return the roleUser
-     */
-    public int getRoleUser() {
-        return roleUser;
-    }
-
-    /**
-     * @param roleUser
-     *            the roleUser to set
-     */
-    public void setRoleUser(int roleUser) {
-        this.roleUser = roleUser;
-    }
 
     /**
      * @return the avatar
