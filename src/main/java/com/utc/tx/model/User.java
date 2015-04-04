@@ -1,14 +1,15 @@
 package com.utc.tx.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,216 +21,358 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "USER")
-public class User {
-    @Id
-    @GenericGenerator(name = "IDUSER", strategy = "INCREMENT")
+public class User implements Serializable{
+
+	private static final long serialVersionUID = -5327553925389840714L;
+
+	@Id
+    @GenericGenerator(name = "id_user", strategy = "INCREMENT")
     private int idUser;
 
-    @Column(name = "PASSWORD")
-    @Size(min = 6, max = 15)
+    @Column(name = "password")
+    @Size(min = 6, max = 30)
     private String password;
 
-    @Column(name = "ENABLED")
-    @NotNull
-    private boolean enabled;
+    @Column(name = "first_name")
+    @Size(min = 1, max = 40)
+    private String firstName;
 
-    @Column(name = "FIRSTNAME")
-    @NotEmpty
-    private String firstname;
+    @Column(name = "last_name")
+    @Size(min = 1, max = 40)
+    private String lastName;
+    
+    @Column(name = "login")
+    @Size(min = 1, max = 40)
+    private String login;
 
-    @Column(name = "LASTNAME")
-    @NotEmpty
-    private String lastname;
-
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     @NotEmpty
     @Email
     private String email;
 
-    @Column(name = "TELEPHONE")
+    @Column(name = "phone_number")
     @NotNull
     @Min(10)
     private Integer telephone;
 
-    @Column(name = "CREATION_DATE")
-    private String creationDate;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "FKROLE")
-    private Role role;
+    @Column(name = "description")
+    private String description;
     
-    @Column(name = "avatar", columnDefinition="blob", length = 16777215)
-    @Lob()
-    private byte[] avatar;
+    @Column(name = "creation_date")
+    private Date creationDate;
+    
+    @Column(name = "deal_count")
+    private Integer dealCount;
+    
+    @Column(name = "comment_count")
+    private Integer commentCount;
+    
+    @Column(name = "deal_positive_grade")
+    private Integer dealPositiveGrade;
+    
+    @Column(name = "deal_negative_grade")
+    private Integer dealNegativeGrade;
+    
+    @Column(name = "comment_positive_grade")
+    private Integer commentPositiveGrade;
+    
+    @Column(name = "comment_negative_grade")
+    private Integer commentNegativeGrade;
+    
+    @Column(name = "longitude")
+    private Integer longitude;
+    
+    @Column(name = "latitude")
+    private Integer latitude;
+    
+    @Column(name = "news_letter")
+    private Integer newsLetter;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_avatar")
+    private Avatar fkAvatar;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_role")
+    private Role role;
 
+	/**
+	 * @return the idUser
+	 */
+	public int getIdUser() {
+		return idUser;
+	}
 
-    @Transient
-    @NotEmpty
-    @Size(min = 6, max = 15)
-    private String confirmation;
-  
+	/**
+	 * @param idUser the idUser to set
+	 */
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
 
-    /**
-     * @return the avatar
-     */
-    public byte[] getAvatar() {
-        return avatar;
-    }
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * @param avatar the avatar to set
-     */
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
-    }
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * @return the confirmation
-     */
-    public String getConfirmation() {
-        return confirmation;
-    }
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
 
-    /**
-     * @param confirmation
-     *            the confirmation to set
-     */
-    public void setConfirmation(String confirmation) {
-        this.confirmation = confirmation;
-    }
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    /**
-     * @return the idUser
-     */
-    public int getIdUser() {
-        return idUser;
-    }
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
 
-    /**
-     * @param idUser
-     *            the idUser to set
-     */
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
 
-    /**
-     * @param password
-     *            the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    /**
-     * @return the enabled
-     */
-    public boolean isEnabled() {
-        return enabled;
-    }
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * @param enabled
-     *            the enabled to set
-     */
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    /**
-     * @return the firstname
-     */
-    public String getFirstname() {
-        return firstname;
-    }
+	/**
+	 * @return the telephone
+	 */
+	public Integer getTelephone() {
+		return telephone;
+	}
 
-    /**
-     * @param firstname
-     *            the firstname to set
-     */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	/**
+	 * @param telephone the telephone to set
+	 */
+	public void setTelephone(Integer telephone) {
+		this.telephone = telephone;
+	}
 
-    /**
-     * @return the lastname
-     */
-    public String getLastname() {
-        return lastname;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * @param lastname
-     *            the lastname to set
-     */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
+	/**
+	 * @return the creationDate
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
 
-    /**
-     * @param email
-     *            the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	/**
+	 * @param creationDate the creationDate to set
+	 */
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 
-    /**
-     * @return the telephone
-     */
-    public Integer getTelephone() {
-        return telephone;
-    }
+	/**
+	 * @return the dealCount
+	 */
+	public Integer getDealCount() {
+		return dealCount;
+	}
 
-    /**
-     * @param telephone
-     *            the telephone to set
-     */
-    public void setTelephone(Integer telephone) {
-        this.telephone = telephone;
-    }
+	/**
+	 * @param dealCount the dealCount to set
+	 */
+	public void setDealCount(Integer dealCount) {
+		this.dealCount = dealCount;
+	}
 
-    /**
-     * @return the creationDate
-     */
-    public String getCreationDate() {
-        return creationDate;
-    }
+	/**
+	 * @return the commentCount
+	 */
+	public Integer getCommentCount() {
+		return commentCount;
+	}
 
-    /**
-     * @param creationDate
-     *            the creationDate to set
-     */
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
+	/**
+	 * @param commentCount the commentCount to set
+	 */
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
+	}
 
-    /**
-     * @return the role
-     */
-    public Role getRole() {
-        return role;
-    }
+	/**
+	 * @return the dealPositiveGrade
+	 */
+	public Integer getDealPositiveGrade() {
+		return dealPositiveGrade;
+	}
 
-    /**
-     * @param role
-     *            the role to set
-     */
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	/**
+	 * @param dealPositiveGrade the dealPositiveGrade to set
+	 */
+	public void setDealPositiveGrade(Integer dealPositiveGrade) {
+		this.dealPositiveGrade = dealPositiveGrade;
+	}
+
+	/**
+	 * @return the dealNegativeGrade
+	 */
+	public Integer getDealNegativeGrade() {
+		return dealNegativeGrade;
+	}
+
+	/**
+	 * @param dealNegativeGrade the dealNegativeGrade to set
+	 */
+	public void setDealNegativeGrade(Integer dealNegativeGrade) {
+		this.dealNegativeGrade = dealNegativeGrade;
+	}
+
+	/**
+	 * @return the commentPositiveGrade
+	 */
+	public Integer getCommentPositiveGrade() {
+		return commentPositiveGrade;
+	}
+
+	/**
+	 * @param commentPositiveGrade the commentPositiveGrade to set
+	 */
+	public void setCommentPositiveGrade(Integer commentPositiveGrade) {
+		this.commentPositiveGrade = commentPositiveGrade;
+	}
+
+	/**
+	 * @return the commentNegativeGrade
+	 */
+	public Integer getCommentNegativeGrade() {
+		return commentNegativeGrade;
+	}
+
+	/**
+	 * @param commentNegativeGrade the commentNegativeGrade to set
+	 */
+	public void setCommentNegativeGrade(Integer commentNegativeGrade) {
+		this.commentNegativeGrade = commentNegativeGrade;
+	}
+
+	/**
+	 * @return the longitude
+	 */
+	public Integer getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(Integer longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
+	 * @return the latitude
+	 */
+	public Integer getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(Integer latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @return the newsLetter
+	 */
+	public Integer getNewsLetter() {
+		return newsLetter;
+	}
+
+	/**
+	 * @param newsLetter the newsLetter to set
+	 */
+	public void setNewsLetter(Integer newsLetter) {
+		this.newsLetter = newsLetter;
+	}
+
+	/**
+	 * @return the fkAvatar
+	 */
+	public Avatar getFkAvatar() {
+		return fkAvatar;
+	}
+
+	/**
+	 * @param fkAvatar the fkAvatar to set
+	 */
+	public void setFkAvatar(Avatar fkAvatar) {
+		this.fkAvatar = fkAvatar;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
+	}    
 }

@@ -1,5 +1,6 @@
 package com.utc.tx.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,47 +15,47 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "ROLE")
-public class Role {
+public class Role implements Serializable{
 
-    @Id
-    @GenericGenerator(name = "IDROLE", strategy = "INCREMENT")
+	private static final long serialVersionUID = -2891517194796346552L;
+
+	@Id
+    @GenericGenerator(name = "id_role", strategy = "INCREMENT")
     private int idRole;
 
-    @Column(name = "LIBELLE")
-    private String libelle;
+    @Column(name = "label")
+    private String label;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
     private Set<User> userSet = new HashSet<User>();
 
-    /**
-     * @return the idRole
-     */
-    public int getIdRole() {
-        return idRole;
-    }
+	/**
+	 * @return the idRole
+	 */
+	public int getIdRole() {
+		return idRole;
+	}
 
-    /**
-     * @param idRole
-     *            the idRole to set
-     */
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
-    }
+	/**
+	 * @param idRole the idRole to set
+	 */
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
+	}
 
-    /**
-     * @return the libelle
-     */
-    public String getLibelle() {
-        return libelle;
-    }
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
 
-    /**
-     * @param libelle
-     *            the libelle to set
-     */
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 	/**
 	 * @return the userSet
@@ -69,5 +70,4 @@ public class Role {
 	public void setUserSet(Set<User> userSet) {
 		this.userSet = userSet;
 	}
-
 }
