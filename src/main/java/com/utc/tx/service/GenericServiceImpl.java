@@ -3,6 +3,7 @@ package com.utc.tx.service;
 import java.util.List;
 
 import com.utc.tx.dao.GenericDao;
+import com.utc.tx.service.GenericService;
 
 public class GenericServiceImpl<T> implements GenericService<T> {
 
