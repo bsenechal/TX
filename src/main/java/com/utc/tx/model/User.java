@@ -27,6 +27,7 @@ public class User implements Serializable{
 
 	@Id
     @GenericGenerator(name = "id_user", strategy = "INCREMENT")
+	@Column(name = "id_user")
     private int idUser;
 
     @Column(name = "password")
@@ -53,7 +54,7 @@ public class User implements Serializable{
     @Column(name = "phone_number")
     @NotNull
     @Min(10)
-    private Integer telephone;
+    private Integer phoneNumber;
 
     @Column(name = "description")
     private String description;
@@ -80,10 +81,10 @@ public class User implements Serializable{
     private Integer commentNegativeGrade;
     
     @Column(name = "longitude")
-    private Integer longitude;
+    private Float longitude;
     
     @Column(name = "latitude")
-    private Integer latitude;
+    private Float latitude;
     
     @Column(name = "news_letter")
     private Integer newsLetter;
@@ -181,17 +182,17 @@ public class User implements Serializable{
 	}
 
 	/**
-	 * @return the telephone
+	 * @return the phoneNumber
 	 */
-	public Integer getTelephone() {
-		return telephone;
+	public Integer getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	/**
-	 * @param telephone the telephone to set
+	 * @param phoneNumber the phoneNumber to set
 	 */
-	public void setTelephone(Integer telephone) {
-		this.telephone = telephone;
+	public void setPhoneNumber(Integer phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	/**
@@ -207,6 +208,8 @@ public class User implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
 
 	/**
 	 * @return the creationDate
@@ -305,32 +308,32 @@ public class User implements Serializable{
 	public void setCommentNegativeGrade(Integer commentNegativeGrade) {
 		this.commentNegativeGrade = commentNegativeGrade;
 	}
-
+	
 	/**
 	 * @return the longitude
 	 */
-	public Integer getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
 
 	/**
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
 	/**
 	 * @return the latitude
 	 */
-	public Integer getLatitude() {
+	public Float getLatitude() {
 		return latitude;
 	}
 
 	/**
 	 * @param latitude the latitude to set
 	 */
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 

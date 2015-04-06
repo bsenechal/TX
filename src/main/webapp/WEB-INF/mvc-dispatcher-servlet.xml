@@ -32,6 +32,29 @@
 	        <!-- max size of file in memory (in bytes) -->
 	        <beans:property name="maxInMemorySize" value="16777215"></beans:property> <!-- 1MB -->
 	 
-	    </beans:bean>
-	    
+	    </beans:bean>    
+	   
+	  	<beans:bean id="localeResolver"
+			class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+			<beans:property name="defaultLocale" value="fr" />
+		</beans:bean>
+	 
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	 
+		<beans:bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+			<beans:property name="interceptors">
+			   <beans:list>
+				<beans:ref bean="localeChangeInterceptor" />
+			   </beans:list>
+			</beans:property>
+		</beans:bean>
+		
+		<beans:bean id="messageSource"
+			class="org.springframework.context.support.ResourceBundleMessageSource">
+			<beans:property name="basename" value="i18n/messages" />
+		</beans:bean>
+ 	    
 </beans:beans>

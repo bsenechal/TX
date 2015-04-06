@@ -21,6 +21,7 @@ public class Role implements Serializable{
 
 	@Id
     @GenericGenerator(name = "id_role", strategy = "INCREMENT")
+	@Column(name = "id_role")
     private int idRole;
 
     @Column(name = "label")

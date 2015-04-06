@@ -13,10 +13,11 @@
 		<access-denied-handler error-page="/403" />
 		<form-login 
 		    login-page="/login" 
-		    default-target-url="/welcome"
+		    default-target-url="/index"
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
-			password-parameter="password" />
+			password-parameter="password" 
+		/>
 		<!-- enable csrf protection -->
 		<csrf />
 		
@@ -31,7 +32,7 @@
 		  users-by-username-query=
 		    "SELECT  email, password, enabled FROM user WHERE email = ?"
 		  authorities-by-username-query=
-		    "SELECT u.email, r.libelle  FROM user u, role r WHERE u.fkRole = r.idRole AND email = ?" />
+		    "SELECT u.email, r.label  FROM user u, role r WHERE u.fk_role = r.id_role AND email = ?" />
 	  </authentication-provider>
 	</authentication-manager>
 

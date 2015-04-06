@@ -18,6 +18,7 @@ public class Avatar implements Serializable{
 
 	@Id
     @GenericGenerator(name = "id_avatar", strategy = "INCREMENT")
+	@Column(name = "id_avatar")
     private int idAvatar;
 		
     @Column(name = "content", columnDefinition="blob", length = 16777215)
