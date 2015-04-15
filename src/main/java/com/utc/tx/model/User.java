@@ -18,6 +18,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "USER")
@@ -68,17 +70,17 @@ public class User implements Serializable{
     @Column(name = "comment_count")
     private Integer commentCount;
     
-    @Column(name = "deal_positive_grade")
-    private Integer dealPositiveGrade;
+    @Column(name = "deal_positive_rate")
+    private Integer dealPositiveRate;
     
-    @Column(name = "deal_negative_grade")
-    private Integer dealNegativeGrade;
+    @Column(name = "deal_negative_rate")
+    private Integer dealNegativeRate;
     
-    @Column(name = "comment_positive_grade")
-    private Integer commentPositiveGrade;
+    @Column(name = "comment_positive_rate")
+    private Integer commentPositiveRate;
     
-    @Column(name = "comment_negative_grade")
-    private Integer commentNegativeGrade;
+    @Column(name = "comment_negative_rate")
+    private Integer commentNegativeRate;
     
     @Column(name = "longitude")
     private Float longitude;
@@ -89,7 +91,8 @@ public class User implements Serializable{
     @Column(name = "news_letter")
     private Integer newsLetter;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "fk_avatar")
     private Avatar fkAvatar;
     
@@ -209,8 +212,6 @@ public class User implements Serializable{
 		this.description = description;
 	}
 
-
-
 	/**
 	 * @return the creationDate
 	 */
@@ -254,61 +255,61 @@ public class User implements Serializable{
 	}
 
 	/**
-	 * @return the dealPositiveGrade
+	 * @return the dealPositiveRate
 	 */
-	public Integer getDealPositiveGrade() {
-		return dealPositiveGrade;
+	public Integer getDealPositiveRate() {
+		return dealPositiveRate;
 	}
 
 	/**
-	 * @param dealPositiveGrade the dealPositiveGrade to set
+	 * @param dealPositiveRate the dealPositiveRate to set
 	 */
-	public void setDealPositiveGrade(Integer dealPositiveGrade) {
-		this.dealPositiveGrade = dealPositiveGrade;
+	public void setDealPositiveRate(Integer dealPositiveRate) {
+		this.dealPositiveRate = dealPositiveRate;
 	}
 
 	/**
-	 * @return the dealNegativeGrade
+	 * @return the dealNegativeRate
 	 */
-	public Integer getDealNegativeGrade() {
-		return dealNegativeGrade;
+	public Integer getDealNegativeRate() {
+		return dealNegativeRate;
 	}
 
 	/**
-	 * @param dealNegativeGrade the dealNegativeGrade to set
+	 * @param dealNegativeRate the dealNegativeRate to set
 	 */
-	public void setDealNegativeGrade(Integer dealNegativeGrade) {
-		this.dealNegativeGrade = dealNegativeGrade;
+	public void setDealNegativeRate(Integer dealNegativeRate) {
+		this.dealNegativeRate = dealNegativeRate;
 	}
 
 	/**
-	 * @return the commentPositiveGrade
+	 * @return the commentPositiveRate
 	 */
-	public Integer getCommentPositiveGrade() {
-		return commentPositiveGrade;
+	public Integer getCommentPositiveRate() {
+		return commentPositiveRate;
 	}
 
 	/**
-	 * @param commentPositiveGrade the commentPositiveGrade to set
+	 * @param commentPositiveRate the commentPositiveRate to set
 	 */
-	public void setCommentPositiveGrade(Integer commentPositiveGrade) {
-		this.commentPositiveGrade = commentPositiveGrade;
+	public void setCommentPositiveRate(Integer commentPositiveRate) {
+		this.commentPositiveRate = commentPositiveRate;
 	}
 
 	/**
-	 * @return the commentNegativeGrade
+	 * @return the commentNegativeRate
 	 */
-	public Integer getCommentNegativeGrade() {
-		return commentNegativeGrade;
+	public Integer getCommentNegativeRate() {
+		return commentNegativeRate;
 	}
 
 	/**
-	 * @param commentNegativeGrade the commentNegativeGrade to set
+	 * @param commentNegativeRate the commentNegativeRate to set
 	 */
-	public void setCommentNegativeGrade(Integer commentNegativeGrade) {
-		this.commentNegativeGrade = commentNegativeGrade;
+	public void setCommentNegativeRate(Integer commentNegativeRate) {
+		this.commentNegativeRate = commentNegativeRate;
 	}
-	
+
 	/**
 	 * @return the longitude
 	 */
@@ -377,5 +378,7 @@ public class User implements Serializable{
 	 */
 	public void setRole(Role role) {
 		this.role = role;
-	}    
+	}
+
+	
 }

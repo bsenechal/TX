@@ -6,7 +6,7 @@ import com.utc.tx.dao.GenericDao;
 import com.utc.tx.service.GenericService;
 
 public class GenericServiceImpl<T> implements GenericService<T> {
-
+	
     private GenericDao<T> dao;
 
     public GenericServiceImpl(Class<T> tClass) {

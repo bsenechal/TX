@@ -56,5 +56,5 @@
 			class="org.springframework.context.support.ResourceBundleMessageSource">
 			<beans:property name="basename" value="i18n/messages" />
 		</beans:bean>
- 	    
+		
 </beans:beans>

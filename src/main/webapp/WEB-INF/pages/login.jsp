@@ -4,9 +4,6 @@
 <div class="content">
 	<div class="wrap">
 		<div class="single-page">
-			<jsp:include page="common/header.jsp"/>
-			
-			<jsp:include page="common/messages.jsp"/>
 		
 			<div class="page-header">
 				<h1>Connexion</h1>

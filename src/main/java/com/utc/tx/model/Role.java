@@ -1,14 +1,10 @@
 package com.utc.tx.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -27,9 +23,6 @@ public class Role implements Serializable{
     @Column(name = "label")
     private String label;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-    private Set<User> userSet = new HashSet<User>();
-
 	/**
 	 * @return the idRole
 	 */
@@ -56,19 +49,5 @@ public class Role implements Serializable{
 	 */
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	/**
-	 * @return the userSet
-	 */
-	public Set<User> getUserSet() {
-		return userSet;
-	}
-
-	/**
-	 * @param userSet the userSet to set
-	 */
-	public void setUserSet(Set<User> userSet) {
-		this.userSet = userSet;
 	}
 }
